@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь кормления канареек</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">🐤 Календарь кормления канареек</h1>
+                <p class="header__subtitle">Научно обоснованные рекомендации по питанию канареек</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Month Selection -->
+                <section class="month-selection">
+                    <div class="card">
+                        <div class="card__body">
+                            <h2>Выберите месяц</h2>
+                            <div class="form-group">
+                                <select id="monthSelect" class="form-control">
+                                    <option value="">Выберите месяц...</option>
+                                    <option value="Январь">Январь</option>
+                                    <option value="Февраль">Февраль</option>
+                                    <option value="Март">Март</option>
+                                    <option value="Апрель">Апрель</option>
+                                    <option value="Май">Май</option>
+                                    <option value="Июнь">Июнь</option>
+                                    <option value="Июль">Июль</option>
+                                    <option value="Август">Август</option>
+                                    <option value="Сентябрь">Сентябрь</option>
+                                    <option value="Октябрь">Октябрь</option>
+                                    <option value="Ноябрь">Ноябрь</option>
+                                    <option value="Декабрь">Декабрь</option>
+                                </select>
+                            </div>
+                            
+                            <div class="actions-row">
+                                <button id="softFoodBtn" class="btn btn--secondary">📋 Рецепты мягких кормов</button>
+                                <button id="grainMixBtn" class="btn btn--secondary">🌾 Рецепты зерновых смесей</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Month Info Display -->
+                <section id="monthInfo" class="month-info hidden">
+                    <div class="card">
+                        <div class="card__header">
+                            <h2 id="monthTitle"></h2>
+                            <div class="status-badges">
+                                <span id="seasonBadge" class="status"></span>
+                                <span id="periodBadge" class="status"></span>
+                            </div>
+                        </div>
+                        <div class="card__body">
+                            <!-- Characteristics and Tasks -->
+                            <div class="info-section">
+                                <h3>Характеристика периода</h3>
+                                <p id="characteristics"></p>
+                                <h4>Основные задачи питания</h4>
+                                <ul id="tasksList"></ul>
+                            </div>
+
+                            <!-- Grain Mix -->
+                            <div class="info-section">
+                                <h3>Состав зерновой смеси</h3>
+                                <div class="table-container">
+                                    <table id="grainTable" class="grain-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Компонент</th>
+                                                <th>%</th>
+                                                <th>Назначение</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Nutrition -->
+                            <div class="info-section">
+                                <h3>Питательные показатели</h3>
+                                <div id="nutritionGrid" class="nutrition-grid"></div>
+                            </div>
+
+                            <!-- Soft Food -->
+                            <div class="info-section">
+                                <h3>Мягкие корма</h3>
+                                <p><strong>Частота:</strong> <span id="softFoodFreq"></span></p>
+                                <div class="soft-food-details">
+                                    <div class="ingredients-column">
+                                        <h4>Ингредиенты</h4>
+                                        <ul id="ingredientsList"></ul>
+                                    </div>
+                                    <div class="preparation-column">
+                                        <h4>Приготовление</h4>
+                                        <ol id="preparationList"></ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Schedule -->
+                            <div class="info-section">
+                                <h3>График кормления</h3>
+                                <p id="schedule"></p>
+                            </div>
+
+                            <!-- Recommendations -->
+                            <div class="info-section">
+                                <h3>Практические рекомендации</h3>
+                                <ul id="recommendationsList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>© 2025 Календарь кормления канареек. Рекомендации составлены на основе научных данных. Автор - Наталия Аветисян. Предложения и замечания по содержанию можно отправить в телеграм <a href="https://t.me/avetisnata" target="_blank">@avetisnata</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Soft Food Modal -->
+    <div id="softFoodModal" class="modal hidden">
+        <div class="modal__backdrop">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h2>📋 Рецепты мягких кормов по месяцам</h2>
+                    <button class="modal__close" aria-label="Закрыть">&times;</button>
+                </div>
+                <div class="modal__body">
+                    <div id="softFoodContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grain Mix Modal -->
+    <div id="grainMixModal" class="modal hidden">
+        <div class="modal__backdrop">
+            <div class="modal__content">
+                <div class="modal__header">
+                    <h2>🌾 Рецепты зерновых смесей по месяцам</h2>
+                    <button class="modal__close" aria-label="Закрыть">&times;</button>
+                </div>
+                <div class="modal__body">
+                    <div id="grainMixContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
